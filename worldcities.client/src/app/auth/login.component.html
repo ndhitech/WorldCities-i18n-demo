@@ -1,0 +1,38 @@
+<div class="login">
+  <h1>{{'mainMenu.Login.Title' |translate }}</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-error *ngIf="loginResult && !loginResult.success">
+        <strong>ERROR</strong>: {{loginResult.message}}
+      </mat-error>
+    </p>
+    <!-- Name -->
+    <mat-form-field>
+      <mat-label>{{'mainMenu.Login.Field.Email' |translate }}</mat-label>
+      <input matInput formControlName="email" required
+             placeholder="{{'mainMenu.Login.Field.Prompt.Email'|translate }}">
+      <mat-error *ngFor="let error of getErrors(form.get('email')!, ('mainMenu.Login.Field.Error.Email' |translate ))  ">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <!-- Lat -->
+    <mat-form-field>
+      <mat-label>{{'mainMenu.Login.Field.Password' |translate }}</mat-label>
+      <input matInput type="password" formControlName="password" required
+             placeholder="{{'mainMenu.Login.Field.Prompt.Password'|translate }}">
+      <mat-error *ngFor="let error of getErrors(form.get('password')!, ('mainMenu.Login.Field.Error.Password'|translate))">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-flat-button color="primary"
+              type="submit">
+        {{'global.Button.Login' |translate }}
+      </button>
+      <button mat-flat-button color="secondary"
+              [routerLink]="['/']">
+        {{'global.Button.Cancel' |translate }}
+      </button>
+    </div>
+  </form>
+</div>

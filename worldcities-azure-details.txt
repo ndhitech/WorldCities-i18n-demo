@@ -1,0 +1,20 @@
+1 - Install node.js (download node-v20.18.3-x64)
+2 - npm install -g @azure/static-web-apps-cli
+3 - npm install -g @angular/cli
+4 - azure-cli-2.69.0-x64
+
+
+https://proud-island-023f4b210.6.azurestaticapps.net
+Baywest Technologies Inc.
+Tenant ID:	3154f2d6-0f6f-45f3-9371-b2e8d0daad8b
+Subscription ID:c6deb4be-099f-4ff5-a22f-1dee3ae85d28
+		1af23237-6a1e-40e9-98a8-bdd4268ff291 (api - backend)
+
+URL: 	https://proud-island-023f4b210.6.azurestaticapps.net  				(front-end)
+	https://worldcities-api-ffekg3drfkchcxfu.canadacentral-01.azurewebsites.net  	(back-end api)
+
+Need to configure CORS - at backend
+
+cd "C:\Demo\WorldCities-i18n-demo\worldcities.client"
+swa deploy --app-location  ./dist/browser/ --app-name worldcities-web --tenant-id 3154f2d6-0f6f-45f3-9371-b2e8d0daad8b --subscription-id c6deb4be-099f-4ff5-a22f-1dee3ae85d28 --env production -nu
+

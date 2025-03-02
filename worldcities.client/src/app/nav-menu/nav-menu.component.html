@@ -1,0 +1,35 @@
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div class="parent">
+        <div class="children left-children">
+          <button mat-icon-button [routerLink]="['/']">
+            <mat-icon>
+              {{'mainMenu.Home.Icon' |translate }}
+            </mat-icon>
+          </button>
+          <a mat-flat-button color="primary" [routerLink]="['/cities']">
+            {{'mainMenu.Cities' |translate }}
+          </a>
+          <a mat-flat-button color="primary" [routerLink]="['/countries']">
+            {{'mainMenu.Countries' |translate }}
+          </a>
+          <span class="separator"></span>
+          <a *ngIf="!isLoggedIn" mat-flat-button color="primary" [routerLink]="['/login']">
+            {{'mainMenu.LoginButton' |translate }}
+          </a>
+          <a *ngIf="isLoggedIn" mat-flat-button color="primary"
+             (click)="onLogout()">
+            {{'mainMenu.LogoutButton' |translate }}
+          </a>
+          </div>
+        <div class="children right-children">
+            <select class="mat-select-panel" (change)="ChangeLang($event)" name="" id="">
+              <option [selected]="lang==='en'" value="en">English</option>
+              <option [selected]="lang==='zh'" value="zh">中文</option>
+            </select>
+      </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>

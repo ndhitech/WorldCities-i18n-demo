@@ -1,0 +1,1 @@
+.\build_angular.ps1 azure worldcities

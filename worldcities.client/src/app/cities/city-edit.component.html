@@ -1,0 +1,97 @@
+<div class="city-edit">
+  <p *ngIf="id && !city"><em>Loading...</em></p>
+  <div [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>{{ this.id ? ('city.Edit.City.Title' |translate) : ('city.Add.A.NewCity.Title' |translate) }} {{title}} </h1>
+    <p>
+      <mat-error *ngIf="form.invalid && form.hasError('isDupeCity')">
+        <strong>{{'city.Error.DuplicatedCityError' |translate }}</strong><i>{{'city.Error.DuplicatedCity' |translate }}</i>,
+        <i>{{'city.Error.DuplicatedLatitude' |translate }}</i>,<i>{{'city.Error.DuplicatedLongitude' |translate }}</i> <i>{{'city.Error.DuplicatedCountry' |translate }}</i> {{'city.Error.DuplicatedCityExists' |translate }}
+      </mat-error>
+    </p>
+    <!-- Name -->
+    <mat-form-field>
+      <mat-label>{{'city.Edit.Name' |translate }}</mat-label>
+      <input matInput formControlName="name" required
+             placeholder="{{'city.Edit.Field.Prompt.Name' |translate }}">
+      <mat-error *ngFor="let error of getErrors(form.get('name')!, ('city.Edit.Name.Error' |translate) )">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Lat -->
+    <mat-form-field>
+      <mat-label>{{'city.Edit.Latitude' |translate }}</mat-label>
+      <input matInput formControlName="lat" required
+             placeholder="{{'city.Edit.Field.Prompt.Latitude' |translate }}">
+      <mat-error *ngFor="let error of getErrors(form.get('lat')!, ('city.Edit.Latitude.Error' |translate),
+                 { 'pattern' : ('common.Error.RequiresFourDecimalValues' |translate) })">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <!-- Lon -->
+    <mat-form-field>
+      <mat-label>{{'city.Edit.Longitude' |translate }}</mat-label>
+      <input matInput formControlName="lon" required
+             placeholder="{{'city.Edit.Field.Prompt.Longitude' |translate }}">
+      <mat-error *ngFor="let error of getErrors(form.get('lon')!,('city.Edit.Longitude.Error' |translate),
+             { 'pattern' : ('common.Error.RequiresFourDecimalValues' |translate) })">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <!-- Country -->
+    <!-- Country -->
+    <mat-form-field *ngIf="countries">
+      <mat-label>{{'city.Edit.Country' |translate }}</mat-label>
+      <mat-select id="countryId" formControlName="countryId">
+        <mat-option *ngFor="let country of countries"
+                    [value]="country.id">
+          {{country.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngFor="let error of getErrors(form.get('countryId')!,('city.Edit.Country.Error' |translate))">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-flat-button color="primary"
+              type="submit" (click)="onSubmit()"
+              [disabled]="!form.valid">
+        {{ this.id ? ('global.Button.Save' |translate) : ('global.Button.Create' |translate) }}
+      </button>
+      <button mat-flat-button color="secondary"
+              [routerLink]="['/cities']">
+        {{'global.Button.Cancel' |translate }}
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Form debug info panel -->
+<!--<div class="info">
+  <div class="info-header">Form Debug Info</div>
+  <div class="info-body">
+    <div class="info-label">
+      Form Value:
+    </div>
+    <div class="info-value">
+      {{ form.value | json }}
+    </div>
+    <hr />
+    <div class="info-label">
+      Form Status:
+    </div>
+    <div class="info-value">
+      {{ form.status | json }}
+    </div>
+  </div>
+</div>-->
+<!-- Form activity log panel -->
+<!--<div class="info">
+  <div class="info-header">Form Activity Log</div>
+  <div class="info-body">
+    <div class="info-value">
+      <span *ngIf="activityLog"
+            [innerHTML]="activityLog">
+      </span>
+    </div>
+  </div>
+</div>-->

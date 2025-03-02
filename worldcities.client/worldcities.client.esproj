@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.1184077">
+  <PropertyGroup>
+    <StartupCommand>npm start</StartupCommand>
+    <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
+    <!-- Allows the build (or compile) script located on package.json to run on Build -->
+    <ShouldRunBuildScript>false</ShouldRunBuildScript>
+    <!-- Folder where production build objects will be placed -->
+    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\worldcities.client\browser\</BuildOutputFolder>
+    <BuildCommand>
+    </BuildCommand>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\assets\sslcert\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="node_modules\%40ngx-translate\http-loader\artifacts\schema.json" />
+    <None Include="node_modules\%40ngx-translate\http-loader\dist\esm2022\lib\http-loader.mjs" />
+    <None Include="node_modules\%40ngx-translate\http-loader\dist\esm2022\ngx-translate-http-loader.mjs" />
+    <None Include="node_modules\%40ngx-translate\http-loader\dist\esm2022\public-api.mjs" />
+    <None Include="node_modules\%40ngx-translate\http-loader\dist\fesm2022\ngx-translate-http-loader.mjs" />
+    <None Include="node_modules\%40ngx-translate\http-loader\dist\fesm2022\ngx-translate-http-loader.mjs.map" />
+    <None Include="node_modules\%40ngx-translate\http-loader\dist\index.d.ts" />
+    <None Include="node_modules\%40ngx-translate\http-loader\dist\lib\http-loader.d.ts" />
+    <None Include="node_modules\%40ngx-translate\http-loader\dist\public-api.d.ts" />
+    <None Include="node_modules\%40ngx-translate\http-loader\http-loader.docs.md" />
+    <None Include="node_modules\%40ngx-translate\http-loader\lib\http-loader.ts" />
+    <None Include="node_modules\%40ngx-translate\http-loader\package-tar\ngx-translate-http-loader-8.0.0.tgz" />
+    <None Include="node_modules\%40ngx-translate\http-loader\package.json" />
+    <None Include="node_modules\%40ngx-translate\http-loader\public-api.ts" />
+    <None Include="node_modules\%40ngx-translate\http-loader\tests\http-loader.spec.ts" />
+  </ItemGroup>
+</Project>

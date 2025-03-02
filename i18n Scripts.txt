@@ -1,0 +1,22 @@
+cd "C:\Demo\WorldCities-i18n-demo\worldcities.client"
+
+ng add @angular/localize
+
+ng extract-i18n
+ng extract-i18n --output-path src/locale
+ng extract-i18n --output-path src/locale --format=json -out-file source
+ng extract-i18n -output-file 'src/local/source.json'
+ng extract-i18n --output-path src/locale -out-file source.json
+
+ng extract-i18n --output-path src/locale --format=json
+
+ng build --localize
+
+"zh": {
+  "localize": [ "zh" ]
+}
+
+
+
+npm install @ngx-translate/core
+npm install @ngx-translate/http-loader

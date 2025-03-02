@@ -1,0 +1,44 @@
+<div class="country-edit">
+  <p *ngIf="id && !country"><em>Loading...</em></p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>{{ this.id ? ('country.Edit.Country.Title' |translate) : ('country.Add.A.New.Country.Title' |translate) }} {{title}} </h1>
+    <!-- Name -->
+    <mat-form-field>
+      <mat-label>{{'country.Edit.Name' |translate }}</mat-label>
+      <input matInput formControlName="name" required
+             placeholder="{{'country.Edit.Field.Prompt.Name' |translate }}">
+      <mat-error *ngFor="let error of getErrors(form.get('name')!,('country.Edit.Name.Error' |translate))">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <!-- isO2 -->
+    <mat-form-field>
+      <mat-label>{{'country.Edit.ISO2' |translate }}</mat-label>
+      <input matInput formControlName="isO2" required
+             placeholder="{{'country.Edit.Field.Prompt.ISO2' |translate }}">
+      <mat-error *ngFor="let error of getErrors(form.get('isO2')!,('country.Edit.ISO2.Error' |translate))">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <!-- isO3 -->
+    <mat-form-field>
+      <mat-label>{{'country.Edit.ISO3' |translate }}</mat-label>
+      <input matInput formControlName="isO3" required
+             placeholder="{{'country.Edit.Field.Prompt.ISO3' |translate }}">
+      <mat-error *ngFor="let error of getErrors(form.get('isO3')!,('country.Edit.ISO3.Error' |translate))">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-flat-button color="primary"
+              type="submit" (click)="onSubmit()"
+              [disabled]="!form.valid">
+        {{ this.id ? ('global.Button.Save' |translate) : ('global.Button.Create' |translate) }}
+      </button>
+      <button mat-flat-button color="secondary"
+              [routerLink]="['/countries']">
+        {{'global.Button.Cancel' |translate }}
+      </button>
+    </div>
+  </form>
+</div>
