@@ -27,9 +27,11 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+        working-directory: worldcities.client
 
       - name: Build Angular App
-        run: npm run build:azure
+        run: npm run build -- --configuration=azure_bwm
+        working-directory: worldcities.client
 
       - name: Build And Deploy
         id: builddeploy
@@ -38,7 +40,7 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_SEA_0581FA01E }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "worldcities.client/dist/browser" # Update based on your actual Angular build output
+          app_location: "worldcities.client/dist/browser" # Updated to match your actual build output
           api_location: ""
           output_location: ""
 
