@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: "worldcities-api-hxdxaeepdncrgzhz.canadacentral-01.azurewebsites.net/"
+  baseUrl: "https://worldcities-api-hxdxaeepdncrgzhz.westus2-01.azurewebsites.net/"
 };
