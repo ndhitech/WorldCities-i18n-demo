@@ -8,14 +8,35 @@ using Serilog.Sinks.MSSqlServer;
 using WorldCities.Server.Data;
 using WorldCities.Server.Data.GraphQL;
 using WorldCities.Server.Data.Models;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using System;
 
 var angularPolicy = "AngularPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
 
-//var varHttpClient = builder.c.UseUrls();
-string dbConnectionString = builder.Configuration.GetConnectionString(Environment.MachineName + "--Connection") ??
-    builder.Configuration.GetConnectionString("DefaultConnection");
+//string dbConnectionString = builder.Configuration.GetConnectionString(Environment.MachineName + "--Connection") ??
+//    builder.Configuration.GetConnectionString("DefaultConnection");
+
+
+//// Key Vault URI
+//string keyVaultUri = "https://baywest-dev-rg-keyvault.vault.azure.net/";
+
+//// Secret name (in your case, the connection string)
+//string secretName = "baywest-demo-database-connectionstring";
+
+//// Create a SecretClient using DefaultAzureCredential
+//var client = new SecretClient(new Uri(keyVaultUri) , new DefaultAzureCredential());
+
+//// Retrieve the secret value
+//KeyVaultSecret secret = client.GetSecret(secretName);
+
+//// Get the connection string from the secret
+//string dbConnectionString = secret.Value;
+
+string dbConnectionString = Environment.GetEnvironmentVariable("SQL_ConnectionString_WorldCities");
+
 
 #if DEBUG
 Console.WriteLine($"The database connection string is :{dbConnectionString}");
