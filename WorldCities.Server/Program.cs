@@ -26,7 +26,8 @@ builder.Host.UseSerilog((ctx , lc) => lc
      .ReadFrom.Configuration(ctx.Configuration)
      .WriteTo.MSSqlServer(connectionString: dbConnectionString ,
          restrictedToMinimumLevel: LogEventLevel.Information ,
-         sinkOptions: new MSSqlServerSinkOptions {
+         sinkOptions: new MSSqlServerSinkOptions
+         {
              TableName = "LogEvents" ,
              AutoCreateSqlTable = true
          }
@@ -35,17 +36,22 @@ builder.Host.UseSerilog((ctx , lc) => lc
 
 builder.Services.AddCors(options =>
  options.AddPolicy(name: angularPolicy ,
-    _configuration => {
+    _configuration =>
+    {
         _configuration.AllowAnyHeader();
         _configuration.AllowAnyMethod();
-        if (builder.Configuration.GetValue<bool>("cors:enabled")) {
-            if (builder.Configuration.GetValue<bool>("cors:allowAnyOrigin")) {
+        if (builder.Configuration.GetValue<bool>("cors:enabled"))
+        {
+            if (builder.Configuration.GetValue<bool>("cors:allowAnyOrigin"))
+            {
                 _configuration.AllowAnyOrigin();
             }
-            else {
+            else
+            {
                 List<string> origins = new List<string>();
                 builder.Configuration.GetSection("cors:origins").Bind(origins);
-                foreach (var origin in origins) {
+                foreach (var origin in origins)
+                {
                     _configuration.WithOrigins(origin.ToString());
                 }
             }
@@ -56,7 +62,8 @@ builder.Services.AddCors(options =>
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddJsonOptions(options => {
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
@@ -78,7 +85,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
      options.UseSqlServer(dbConnectionString)
 );
 // Add ASP.NET Core Identity support
-builder.Services.AddIdentity<ApplicationUser , IdentityRole>(options => {
+builder.Services.AddIdentity<ApplicationUser , IdentityRole>(options =>
+{
     options.SignIn.RequireConfirmedAccount = true;
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
@@ -90,11 +98,14 @@ builder.Services.AddIdentity<ApplicationUser , IdentityRole>(options => {
 
 builder.Services.AddScoped<JwtHandler>();
 // Add Authentication services & middlewares
-builder.Services.AddAuthentication(opt => {
+builder.Services.AddAuthentication(opt =>
+{
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options => {
-    options.TokenValidationParameters = new TokenValidationParameters {
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
         RequireExpirationTime = true ,
         ValidateIssuer = true ,
         ValidateAudience = true ,
@@ -117,11 +128,13 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()) {
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-else {
+else
+{
     app.UseExceptionHandler("/Error");
     app.MapGet("/Error" , () => Results.Problem());
     app.UseHsts();
